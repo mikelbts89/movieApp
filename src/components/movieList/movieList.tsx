@@ -7,8 +7,8 @@ interface IProps {
 }
 
 export default function MovieList(props: IProps) {
-  const { movies, noDataMessage = "No Data" } = props;
-  if (!movies.length) return <h1> {noDataMessage}</h1>;
+  const { movies, noDataMessage = "No search was performed" } = props;
+  if (movies === undefined || !movies.length) return <h1> {noDataMessage}</h1>;
   return (
     <div className="row">
       {movies.map((movie, index) => {

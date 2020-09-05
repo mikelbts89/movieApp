@@ -16,7 +16,7 @@ function App() {
   }
 
   async function getMoviefomAPI(value: string) {
-    const movies = `http://www.omdbapi.com/?s=${value}&apikey=4f7462e2&page=10`;
+    const movies = `http://www.omdbapi.com/?s=${value}&apikey=4f7462e2&page=2`;
     const result = await fetch(movies);
     const jsonResult = await result.json();
     const finalResult = jsonResult.Search;
@@ -40,6 +40,7 @@ function App() {
             value={searchValue}
           />
           <Button
+            className="searchBarButtons"
             onClick={() => {
               getMoviefomAPI(searchValue);
             }}
@@ -59,9 +60,9 @@ function App() {
       </div>
       <div className="row">
         <FindMovie searchOperation={getMoviefomAPI} />
-      </div>
-      <div className="row">
-        <Button onClick={clearMovies}>Clear Movie List</Button>
+        <Button className="searchBarButtons" onClick={clearMovies}>
+          Clear Movie List
+        </Button>
       </div>
       <MovieList movies={movies} />
     </div>

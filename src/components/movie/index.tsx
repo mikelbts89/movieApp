@@ -16,9 +16,12 @@ export interface IMovie {
 }
 
 export default function Movie(props: IMovie) {
+  const noImg =
+    "https://upload.wikimedia.org/wikipedia/commons/0/0a/No-image-available.png";
+
   return (
     <Card style={{ width: "14rem" }}>
-      <Card.Img variant="top" src={props.Poster} />
+      <Card.Img variant="top" src={props.Poster || noImg} />
       <Card.Body>
         <Card.Title>{props.Title} </Card.Title>
         <Card.Text> {props.Year} </Card.Text>
