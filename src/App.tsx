@@ -10,7 +10,6 @@ import FormControl from "react-bootstrap/FormControl";
 function App() {
   const moviesListArr: Array<any> = [];
   const [movies, setMovies] = useState(moviesListArr);
-  console.log(movies);
 
   function clearMovies() {
     setMovies([]);
@@ -21,7 +20,6 @@ function App() {
     const result = await fetch(movies);
     const jsonResult = await result.json();
     const finalResult = jsonResult.Search;
-    console.log(finalResult);
     setMovies(finalResult);
   }
 
