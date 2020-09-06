@@ -73,7 +73,7 @@ function App() {
   }
 
   return (
-    <div>
+    <div className='mainDiv'>
       <Router>
         <NavigationApp />
         <div className="container">
