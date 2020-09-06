@@ -4,6 +4,8 @@
 
 .headers {
   background-color: lightsteelblue;
+  width: 80%;
+  margin: auto;
 }
 
 .App-logo {
