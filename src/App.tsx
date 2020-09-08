@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Component } from "react";
 import "./App.css";
 import MovieList from "./components/movieList/movieList";
 import CustomHeader from "./components/header";
@@ -6,6 +6,13 @@ import "./components/header/index.css";
 import Button from "react-bootstrap/esm/Button";
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
+import NavbarCollapse from "react-bootstrap/esm/NavbarCollapse";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import NavigationApp from "./components/navBar";
+import { Routes } from "./data/index";
+import { IRoute } from "./interface/IRoute";
+import { IRouteList } from "./interface/IRoutList";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
 function App() {
   const moviesListArr: Array<any> = [];
@@ -52,19 +59,42 @@ function App() {
     );
   }
 
+  function RouteList(props: IRouteList) {
+    return (
+      <>
+        {props.routeList.map((element: IRoute, index: number) => {
+          const { path, component } = element;
+          return (
+            <Route path={path} component={component} key={`route ${index}`} />
+          );
+        })}
+      </>
+    );
+  }
+
   return (
-    <div className="container">
-      <div></div>
+    <div className='mainDiv'>
+      <Router>
+        <NavigationApp />
+        <div className="container">
+          <Switch>
+            <RouteList routeList={Routes} />
+          </Switch>
+        </div>
+      </Router>
+
       <div className="headers">
         <CustomHeader text={"Movies"} />
       </div>
-      <div className="row">
-        <FindMovie searchOperation={getMoviefomAPI} />
-        <Button className="searchBarButtons" onClick={clearMovies}>
-          Clear Movie List
-        </Button>
+      <div className="container">
+        <div className="row">
+          <FindMovie searchOperation={getMoviefomAPI} />
+          <Button className="searchBarButtons" onClick={clearMovies}>
+            Clear Movie List
+          </Button>
+        </div>
+        <MovieList movies={movies} />
       </div>
-      <MovieList movies={movies} />
     </div>
   );
 }
